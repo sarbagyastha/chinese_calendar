@@ -15,6 +15,11 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
       - uses: subosito/flutter-action@v2.18.0
+      - run: |
+          flutter --version
+          cd ${{ env.FLUTTER_ROOT }}
+          curl https://patch-diff.githubusercontent.com/raw/flutter/flutter/pull/161874.patch | git apply
+          git status
       - uses: sarbagyastha/flutter-gh-pages@main
         with:
           baseHref: /
